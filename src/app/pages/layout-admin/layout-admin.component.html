@@ -1,0 +1,29 @@
+<header>
+    <button class="logout"><span class="material-symbols-outlined">logout</span>Déconnexion</button>
+    <img src="images/avatar.png" alt="Profil">
+</header>
+<nav class="side-bar">
+    <img src="images/logoPropulse.png" alt="">
+    <hr>
+    <div class="options">
+        <span class="option">
+            <span class="material-symbols-outlined">account_child_invert</span>
+            <a routerLink="admin/trainees-management" class="text">Gestion des stagiaires</a>
+        </span>
+        <span class="option">
+            <span class="material-symbols-outlined">speed</span>
+            <a routerLink="admin/dashboard" class="text">Tableau de bord</a>
+        </span>
+        <span class="option">
+            <span class="material-symbols-outlined"><span class="material-symbols-outlined">person_edit</span></span>
+            <a routerLink="admin/profil" class="text">Profil</a>
+        </span>
+    </div>
+
+</nav>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer>
+    <p>&copy; ROA Tous droits résevés </p>
+</footer>
