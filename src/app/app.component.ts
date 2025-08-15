@@ -8,7 +8,7 @@ import { LayoutAdminComponent } from "./pages/layout-admin/layout-admin.componen
   imports: [
     RouterOutlet,
     Login,
-    LayoutAdminComponent
+    LayoutAdminComponent,
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

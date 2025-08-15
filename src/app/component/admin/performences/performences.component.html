@@ -1,0 +1,37 @@
+<h2>Performences et activités internes</h2>
+<div class="graphiques">
+  <div #chart1 class="linear-graphs">
+    <div>
+      <h3>Progréssion des objectifs</h3>
+      <h4>Taux de compétition moyen par semaine</h4>
+    </div>
+
+    <ngx-charts-line-chart [view]="view1" [scheme]="colorScheme" [results]="objectifsData" [xAxis]="true" [yAxis]="true"
+      [legend]="false" [legendPosition]="legendPosition" [autoScale]="true" [showGridLines]="true" [animations]="true"
+      [yAxisTickFormatting]="yAxisTickFormating">
+    </ngx-charts-line-chart>
+  </div>
+  <div #chart2 class="circular-graphs">
+    <h3>Progréssion des objectifs</h3>
+    <h4>Taux de compétition moyen par semaine</h4>
+    <ngx-charts-pie-chart [view]="view2" [scheme]="colorScheme" [results]="tachesData" [legend]="false"
+      [animations]="true" [doughnut]="true" [arcWidth]="0.4" [explodeSlices]="true">
+    </ngx-charts-pie-chart>
+
+    <div class="custom-legend">
+      @for (data of tachesData; track data.name) {
+      <p> <span class="legend-color" [style.backgroundColor]="getColor(data.name)"></span> {{data.name}}</p>
+      }
+    </div>
+  </div>
+  <div #chart2 class="circular-graphs">
+    <div>
+      <h3>Activités quotidiennes</h3>
+      <h4>Heures moyennes par jour</h4>
+    </div>
+
+    <ngx-charts-bar-vertical [view]="view2" [scheme]="activitiesColorScheme" [results]="activitiesData" [legend]="false"
+      [animations]="true" [xAxis]="true" [yAxis]="true">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>
