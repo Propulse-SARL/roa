@@ -1,0 +1,97 @@
+section {
+    position: relative;
+}
+
+h2 {
+    font-family: 'Outfit';
+    font-size: clamp(25px, 2vw, 35px);
+    line-height: 32px;
+    color: #171A1FFF;
+    font-weight: bold;
+}
+
+.statistiques {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+
+    .statistique {
+        background: white;
+        width: 264px;
+        height: 104px;
+        background: #FFFFFFFF;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 15px;
+        transition: 0.3s;
+
+        .line1 {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #565D6DFF;
+            font-family: 'Inter';
+
+            .material-symbols-outlined {
+                color: #008B1DFF;
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: 500;
+                color: #565D6DFF;
+            }
+        }
+
+        .val {
+            color: #171A1FFF;
+            font-size: 32px;
+            font-family: 'Outfit';
+            font-weight: bold;
+
+        }
+
+        &:hover {
+            box-shadow: 0px 0px 8px #06412BFF;
+            transform: translateY(-10px);
+        }
+    }
+}
+
+.add-stagiaire-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    margin-top: 30px;
+
+    .add-stagiaire {
+        width: 196px;
+        color: white;
+        background: #008B1DFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 10px;
+        gap: 16px;
+        font-family: 'Inter';
+        font-weight: 500;
+        transition: 0.2s;
+        cursor: pointer;
+
+        &:hover {
+            background: #007C1BFF;
+        }
+    }
+}

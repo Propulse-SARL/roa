@@ -1,0 +1,79 @@
+<form [formGroup]="addStagiaireForm" (ngSubmit)="onSubmit()">
+    <div>
+        <h2>Enregistrer un nouveau stagiaire</h2>
+        <p>Remplissez les informations ci-dessous pour ajouter un nouveau stagiaire au système.</p>
+    </div>
+    @if (error) {
+        <div class="error">
+            Veuillez remplir correctement les champs
+        </div>
+    }
+    <div class="row-container">
+        <div class="row">
+            <div class="label-input">
+                <label for="nom">Nom </label>
+                <input type="text" id="nom" formControlName="name" placeholder="Entrez le nom du stagiaire" required>
+            </div>
+            <div class="label-input">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" formControlName="lastName" placeholder="Entrez le prénom du stagiaire">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="age">Age</label>
+                <input type="text" id="age" formControlName="age" placeholder="Entrez l'âge du stagiaire" required>
+            </div>
+            <div class="label-input">
+                <label for="email">Email</label>
+                <input type="email" id="email" formControlName="email" placeholder="Entrez l'email du stagiaire">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="label-input">
+                <label for="nivScolaire">Niveau scolaire</label>
+                <input type="text" id="nivScolaire" formControlName="nivScolaire"
+                    placeholder="Entrez le niveau scolaire du stagiaire" required>
+            </div>
+            <div class="label-input">
+                <label for="ecole">Ecole</label>
+                <input type="text" id="ecole" formControlName="ecole" placeholder="Entrez l'école du stagiaire">
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="label-input">
+                <label for="departement">Département</label>
+                <select name="" id="departement" formControlName="departement">
+                    <option value="" disabled selected class="placeholder-option">-- Attribuer un département --
+                    </option>
+                    <option value="developpement">Informatique</option>
+                </select>
+            </div>
+            <div class="label-input">
+                <label for="statut">Statut</label>
+                <select name="" id="statut" formControlName="statut">
+                    <option value="" disabled selected class="placeholder-option">Attribuer un Statut</option>
+                    <option value="academique">Académique</option>
+                    <option value="Pro">Professionnel</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="dteDebut">Date de début de stage</label>
+                <input type="date" id="dteDebut" formControlName="dteDebutStage">
+            </div>
+            <div class="label-input">
+                <label for="ecole">Date de fin de stage</label>
+                <input type="date" id="dteDin" formControlName="dteFinStage">
+            </div>
+        </div>
+
+    </div>
+    <div class="btn-container">
+        <button type="submit">Enregistrer le stagiaire</button>
+    </div>
+</form>
