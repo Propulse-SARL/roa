@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { DashboardComponent } from "../../component/admin/dashboard/dashboard.component";
 import { InternManagementComponent } from "../../component/admin/intern-management/intern-management.component";
 
@@ -7,8 +7,8 @@ import { InternManagementComponent } from "../../component/admin/intern-manageme
   selector: 'app-layout-admin',
   imports: [
     RouterOutlet,
-    DashboardComponent,
-    InternManagementComponent
+    RouterLink,
+    RouterLinkActive
 ],
   templateUrl: './layout-admin.component.html',
   styleUrl: './layout-admin.component.scss'

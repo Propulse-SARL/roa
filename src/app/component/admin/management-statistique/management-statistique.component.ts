@@ -5,7 +5,6 @@ import { AddStagiaireComponent } from '../add-stagiaire/add-stagiaire.component'
   selector: 'app-management-statistique',
   imports: [
     MatDialogModule,
-    AddStagiaireComponent,
   ],
   templateUrl: './management-statistique.component.html',
   styleUrl: './management-statistique.component.scss'

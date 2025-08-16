@@ -1,0 +1,39 @@
+h2 {
+    font-family: 'Outfit';
+    font-size: clamp(20px, 1.8vw, 30px);
+    line-height: 32px;
+    color: #171A1FFF;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    font-family: 'Inter';
+    color: #171A1FFF;
+    background: white;
+    margin-top: 20px;
+
+    thead {
+        tr {
+            font-weight: 600;
+            font-family: 'Outfit';
+            text-transform: uppercase;
+            color: black;
+            background: #FAFAFBFF;
+        }
+    }
+
+    th,
+    td {
+        padding: 13px 10px;
+
+    }
+}
+.nom{
+    color: rgb(255, 179, 0);
+}
+.departement{
+    border-radius: 15px;
+    padding: 3px;
+}

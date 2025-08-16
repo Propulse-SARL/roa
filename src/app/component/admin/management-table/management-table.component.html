@@ -1,0 +1,54 @@
+<section>
+    <h2>Liste des stagiaires</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom & Prénom</th>
+                <th>Niveau</th>
+                <th>Département</th>
+                <th>Période</th>
+                <th>Statut</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (stagiaire of Stagiaires; track stagiaire.id; let i = $index) {
+            <tr>
+                <td>{{stagiaire.id}}</td>
+                <td class="nom">{{stagiaire.name}} {{stagiaire.firstName}} </td>
+                <td>{{stagiaire.niveau}}</td>
+                <td>
+                    <p class="departement" [style.backgroundColor]="color[i]">{{stagiaire.departement}}</p>
+                </td>
+                <td>{{stagiaire.dateDebutStage}} - {{stagiaire.dateFinStage}}</td>
+                <td>{{stagiaire.status}}</td>
+                <td>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="openAddObjectifForm()">
+                            <mat-icon>gps_fixed</mat-icon>
+                            <span >Attribuer un objectif</span>
+                        </button>
+                        <button mat-menu-item >
+                            <mat-icon>description</mat-icon>
+                            <span>Voir les rapports</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Modifier les informations</span>
+                        </button>
+                        <button mat-menu-item>
+                            <mat-icon>delete</mat-icon>
+                            <span>supprimer le stagiaire</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>

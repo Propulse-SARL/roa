@@ -6,23 +6,22 @@
     <img src="images/logoPropulse.png" alt="">
     <hr>
     <div class="options">
-        <span class="option">
+        <span class="option" [routerLink]="['/admin/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
             <span class="material-symbols-outlined">account_child_invert</span>
-            <a routerLink="admin/trainees-management" class="text">Gestion des stagiaires</a>
+            <a class="text">Gestion des stagiaires</a>
         </span>
-        <span class="option">
+        <span class="option" [routerLink]="['/admin/dashboard']" routerLinkActive="active">
             <span class="material-symbols-outlined">speed</span>
-            <a routerLink="admin/dashboard" class="text">Tableau de bord</a>
+            <a class="text">Tableau de bord</a>
         </span>
         <span class="option">
             <span class="material-symbols-outlined"><span class="material-symbols-outlined">person_edit</span></span>
-            <a routerLink="admin/profil" class="text">Profil</a>
+            <a [routerLink]="['/admin/profile']" routerLinkActive="active"  class="text">Profil</a>
         </span>
     </div>
 
 </nav>
 <main>
-    <app-intern-management></app-intern-management>
     <router-outlet></router-outlet>
 </main>
 <footer>

@@ -1,0 +1,82 @@
+<form [formGroup]="addObjectifForm" (ngSubmit)="onSubmit()">
+    <div>
+        <h2>Enregistrer un objectif</h2>
+        <p>Attribuer à: </p>
+    </div>
+    @if (error) {
+    <div class="error">
+        Veuillez remplir correctement les champs
+    </div>
+    }
+    <div class="row-container">
+        <div class="row">
+            <div class="label-input">
+                <label for="titre">Titre </label>
+                <input type="text" id="titre" formControlName="title" placeholder="Entrez le nom de l'objectif"
+                    required>
+            </div>
+        </div>
+        @if (addObjectifForm.get('title')?.invalid && addObjectifForm.get('title')?.touched) {
+        <div class="error">Ce champ est obligatoire (min 3 caractères) .</div>
+        }
+        <div class="row">
+            <div class="label-input">
+                <label for="description">Description </label>
+                <textarea id="description" formControlName="description"
+                    placeholder="Entrez la description de l'objectif" required></textarea>
+            </div>
+        </div>
+        @if (addObjectifForm.get('description')?.invalid && addObjectifForm.get('description')?.touched) {
+        <div class="error">Ce champ est obligatoire (min 3 caractères) .</div>
+        }
+        <div class="row">
+            <div class="label-input">
+                <label for="type">Type</label>
+                <select name="" id="type" formControlName="type">
+                    <option value="" disabled selected class="placeholder-option">-- Attribuer un type --
+                    </option>
+                    <option value="developpement">Informatique</option>
+                </select>
+            </div>
+            <div class="label-input">
+                <label for="nature">Nature</label>
+                <select name="" id="nature" formControlName="nature">
+                    <option value="" disabled selected class="placeholder-option">Attribuer une Nature</option>
+                    <option value="academique">Académique</option>
+                    <option value="Pro">Professionnel</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="priorite">Priorité</label>
+                <select name="" id="priorite" formControlName="priorite">
+                    <option value="" disabled selected class="placeholder-option">-- Attribuer une priorité --
+                    </option>
+                    <option value="developpement">Informatique</option>
+                </select>
+            </div>
+            <div class="label-input">
+                <label for="statut">Statut</label>
+                <select name="" id="statut" formControlName="statut">
+                    <option value="" disabled selected class="placeholder-option">Attribuer un statut</option>
+                    <option value="academique">Académique</option>
+                    <option value="Pro">Professionnel</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="label-input">
+                <label for="commentaire">Commentaire (facultatif) </label>
+                <textarea id="commentaire" formControlName="commentaire" placeholder="Entrez un commentaire"
+                    required></textarea>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="btn-container">
+        <button type="submit">Enregistrer l'objectif</button>
+    </div>
+</form>
