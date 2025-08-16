@@ -45,11 +45,11 @@ export class PerformencesComponent implements AfterViewInit {
   ]
 
   activitiesData = [
-    { name: 'Lundi', value: 8 },
-    { name: 'Mardi', value: 7 },
-    { name: 'Mercredi', value: 6 },
-    { name: 'Jeudi', value: 8 },
-    { name: 'Vendredi', value: 5 },
+    { name: 'Lun', value: 8 },
+    { name: 'Mar', value: 7 },
+    { name: 'Mer', value: 6 },
+    { name: 'Jeu', value: 8 },
+    { name: 'Ven', value: 5 },
   ]
   ngAfterViewInit(): void {
     this.updateViews();
