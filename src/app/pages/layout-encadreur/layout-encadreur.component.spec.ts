@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutAdminComponent } from './layout-admin.component';
+import { LayoutencadreurComponent } from './layout-encadreur.component';
 
-describe('LayoutAdminComponent', () => {
-  let component: LayoutAdminComponent;
-  let fixture: ComponentFixture<LayoutAdminComponent>;
+describe('LayoutencadreurComponent', () => {
+  let component: LayoutencadreurComponent;
+  let fixture: ComponentFixture<LayoutencadreurComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutAdminComponent]
+      imports: [LayoutencadreurComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LayoutAdminComponent);
+    fixture = TestBed.createComponent(LayoutencadreurComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
