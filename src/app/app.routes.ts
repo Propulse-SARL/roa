@@ -1,3 +1,4 @@
+import { DashboardComponent as DashboardStagiareComponent} from './component/stagiaire/dashboard/dashboard.component';
 import { Routes } from '@angular/router';
 import { Login } from './pages/form/login/login';
 import { LayoutencadreurComponent } from './pages/layout-encadreur/layout-encadreur.component';
@@ -16,7 +17,8 @@ export const routes: Routes = [
     },
     {
         path: 'stagiaire', component:LayoutStagiaireComponent, children: [
-            {path: '', component:MyReportsComponent}
+            {path: '', component:MyReportsComponent},
+            {path: 'dashboard', component: DashboardStagiareComponent}
         ]
     }
 ];

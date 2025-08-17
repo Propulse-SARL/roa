@@ -16,18 +16,19 @@ h1 {
 
     .statistique {
         background: white;
-        width: 264px;
-        height: 114px;
+        width: 284px;
+        height: 134px;
         background: #FFFFFFFF;
-        border-radius: 10px;
+        border-radius: 6px;
         box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.159);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        box-shadow: inset 5px 0 0 #008B1DFF;
         padding: 0 5px;
         transition: 0.3s;
+        gap: 5px;
+
         .line1 {
             display: flex;
             align-items: center;
@@ -38,7 +39,10 @@ h1 {
             font-family: 'Inter';
 
             .material-symbols-outlined {
-                color: #008B1DFF;
+                padding: 8px;
+                color: white;
+                border-radius: 5px;
+                font-size: 16px;
             }
 
             p {
@@ -48,20 +52,71 @@ h1 {
             }
         }
 
+        .line3 {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 25px;
+            color: #565D6DFF;
+        }
+
         .val {
             color: #171A1FFF;
             font-size: 32px;
             font-family: 'Outfit';
             font-weight: bold;
-
-            .pourcent {
-                font-size: 18px;
-                color: #565D6DFF;
-            }
         }
 
-        &:hover{
+        &:hover {
             transform: translateY(-10px);
+        }
+    }
+
+    .jaune {
+        box-shadow: inset 5px 0 0 #D89700FF;
+
+        .material-symbols-outlined {
+            background-color: #D89700FF;
+        }
+
+        .val {
+            color: #D89700FF;
+        }
+
+        .restant {
+            color: #D89700FF;
+        }
+    }
+
+    .vert {
+        box-shadow: inset 5px 0 0 #008B1DFF;
+
+        .material-symbols-outlined {
+            background-color: #008B1DFF;
+        }
+
+        .val {
+            color: #008B1DFF;
+        }
+
+        .restant {
+            color: #008B1DFF;
+        }
+    }
+
+    .rouge {
+        box-shadow: inset 5px 0 0 #CF3F4CFF;
+
+        .material-symbols-outlined {
+            background-color: #CF3F4CFF;
+        }
+
+        .val {
+            color: #CF3F4CFF;
+        }
+
+        .restant {
+            color: #CF3F4CFF;
         }
     }
 }
