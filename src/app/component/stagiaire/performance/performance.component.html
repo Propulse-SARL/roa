@@ -1,0 +1,29 @@
+<h2>Performances</h2>
+
+<div class="graphiques">
+    <div class="graphique graphique1">
+        <h3>Objectifs quotidiens</h3>
+        <div class="graphique-container">
+            <div #chart1 class="graphique-container-direct">
+                <ngx-charts-pie-chart [view]="view1" [scheme]="colorScheme" [results]="objectifQuotidienData"
+                    [legend]="false" [legendPosition]="legendPos" [animations]="true" [doughnut]="true"
+                    [arcWidth]="0.25" [explodeSlices]="true">
+                </ngx-charts-pie-chart>
+            </div>
+        </div>
+
+
+        <div class="custom-legend">
+            @for (data of objectifQuotidienData; track data.name) {
+            <p> <span class="legend-color" [style.backgroundColor]="getColor(data.name)"></span> {{data.name}}</p>
+            }
+        </div>
+    </div>
+    <div #chart2 class="graphique graphique2">
+        <h3>Objectifs hebdomadaires</h3>
+        <ngx-charts-line-chart [view]="view2" [scheme]="colorScheme" [results]="objectifsHebdomadairesData"
+            [xAxis]="true" [yAxis]="true" [legend]="false" [legendPosition]="legendPos" [autoScale]="true"
+            [showGridLines]="true" [animations]="true">
+        </ngx-charts-line-chart>
+    </div>
+</div>
