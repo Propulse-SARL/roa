@@ -13,6 +13,12 @@ table {
     color: #171A1FFF;
     background: white;
     margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.159);
+    border-collapse: collapse;
+
+    mat-icon {
+        color: #008B1DFF;
+    }
 
     thead {
         tr {
@@ -30,10 +36,16 @@ table {
 
     }
 }
-.nom{
+
+.nom {
     color: rgb(255, 179, 0);
 }
-.departement{
-    border-radius: 15px;
-    padding: 3px;
+
+.departements {
+    display: flex;
+    justify-content: center;
+    .departement {
+        border-radius: 15px;
+        padding: 5px 15px;
+    }
 }

@@ -1,0 +1,46 @@
+<section>
+    <h2>Consulter les rapports</h2>
+    <form action="" [formGroup]="searchForm">
+        <div class="search-wrapper">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" formControlName="search" placeholder="Rechercher un rapport">
+        </div>
+
+        <select name="" id="" formControlName="week">
+            <option value="null">Toutes les semaines</option>
+            @for ( i of [1,2,3,4]; track i) {
+            <option value={{i}}>Semaine {{i}}</option>
+            }
+        </select>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nom de l'auteur</th>
+                <th>Titre du rapport</th>
+                <th>Date de soumission</th>
+                <th>Département</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (report of reports; track report.no) {
+            <tr>
+                <td>{{report.no}}</td>
+                <td>{{report.author}}</td>
+                <td class="title">{{report.title}}</td>
+                <td>{{report.submissionDate}}</td>
+                <td>{{report.department}}</td>
+                <td class="actions">
+                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">visibility</span>
+                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">download</span>
+                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">print</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    
+</section>

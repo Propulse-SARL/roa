@@ -1,0 +1,29 @@
+<header>
+    <button class="logout"><span class="material-symbols-outlined">logout</span>Déconnexion</button>
+    <img src="images/avatar.png" alt="Profil">
+</header>
+<nav class="side-bar">
+    <img src="images/logoPropulse.png" alt="">
+    <hr>
+    <div class="options">
+        <span class="option" [routerLink]="['/stagiaire/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <span class="material-symbols-outlined">docs</span>
+            <a class="text">Mes rapports</a>
+        </span>
+        <span class="option" [routerLink]="['/stagiaire/dashboard']" routerLinkActive="active">
+            <span class="material-symbols-outlined">speed</span>
+            <a class="text">Tableau de bord</a>
+        </span>
+        <span class="option">
+            <span class="material-symbols-outlined"><span class="material-symbols-outlined">person_edit</span></span>
+            <a [routerLink]="['/stagiaire/profile']" routerLinkActive="active"  class="text">Profil</a>
+        </span>
+    </div>
+
+</nav>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer>
+    <p>&copy; ROA Tous droits résevés </p>
+</footer>

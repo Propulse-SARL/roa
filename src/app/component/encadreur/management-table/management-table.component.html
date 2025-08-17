@@ -19,14 +19,14 @@
                 <td>{{stagiaire.id}}</td>
                 <td class="nom">{{stagiaire.name}} {{stagiaire.firstName}} </td>
                 <td>{{stagiaire.niveau}}</td>
-                <td>
+                <td class="departements">
                     <p class="departement" [style.backgroundColor]="color[i]">{{stagiaire.departement}}</p>
                 </td>
                 <td>{{stagiaire.dateDebutStage}} - {{stagiaire.dateFinStage}}</td>
                 <td>{{stagiaire.status}}</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="menu">
-                        <mat-icon>more_vert</mat-icon>
+                        <mat-icon color="primary">more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="openAddObjectifForm()">
