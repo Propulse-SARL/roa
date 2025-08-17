@@ -1,0 +1,55 @@
+<form [formGroup]="detailObjectifForm" (ngSubmit)="onSubmit()">
+    <div>
+        <h2>Détails de l'objectif</h2>
+        <p>N0 </p>
+    </div>
+    @if (error) {
+        <div class="error">
+            Veuillez remplir la section commentaire (min. 5 caractères)
+        </div>
+    }
+    <div class="row-container">
+        <div class="row">
+            <div class="label-input">
+                <label for="titre">Titre </label>
+                <input type="text" id="titre" formControlName="title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="description">Description </label>
+                <input type="text" id="description" formControlName="description">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="type">Type</label>
+                <input type="text" name="" id="type" formControlName="type">
+            </div>
+            <div class="label-input">
+                <label for="nature">Nature</label>
+                <input type="text" name="" id="nature" formControlName="nature"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="label-input">
+                <label for="priorite">Priorité</label>
+                <input type="text" name="" id="priorite" formControlName="priorite"/>
+            </div>
+            <div class="label-input">
+                <label for="statut">Statut</label>
+                <input type="text" name="" id="statut" formControlName="statut">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="label-input">
+                <label for="commentaire">Remaque </label>
+                <textarea id="commentaire" formControlName="commentaire" placeholder="Entrez un commentaire"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="btn-container">
+        <button type="submit">Enregistrer</button>
+    </div>
+</form>

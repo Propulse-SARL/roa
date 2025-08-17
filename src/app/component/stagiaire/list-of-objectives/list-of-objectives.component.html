@@ -1,0 +1,45 @@
+<section>
+    <h2>Liste des objectifs</h2>
+    <form action="" [formGroup]="searchForm">
+        <div class="search-wrapper">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" formControlName="search" placeholder="Rechercher un objectif ...">
+        </div>
+
+        <select name="" id="" formControlName="week">
+            <option value="null">Toutes les semaines</option>
+            @for ( i of [1,2,3,4]; track i) {
+            <option value={{i}}>Semaine {{i}}</option>
+            }
+        </select>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th>Checker</th>
+                <th>Détail / <br> Remarque</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (objectif of objectifs; track objectif.id; let i = $index ) {
+            <tr>
+                <td>{{objectif.id}}</td>
+                <td class="title">{{objectif.titre}}</td>
+                <td>{{objectif.date}}</td>
+                <td class="statuts">
+                    <p class="statut" [style.backgroundColor]="color[i]">{{objectif.statut}}</p>
+                </td>
+                <td><mat-checkbox></mat-checkbox></td>
+                <td class="remarque">
+                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Détails de la tache"
+                        (click)="openDetailTask()">add_comment</span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</section>
