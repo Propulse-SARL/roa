@@ -6,6 +6,7 @@ import { DashboardComponent } from './component/encadreur/dashboard/dashboard.co
 import { InternManagementComponent } from './component/encadreur/intern-management/intern-management.component';
 import { LayoutStagiaireComponent } from './pages/layout-stagiaire/layout-stagiaire.component';
 import { MyReportsComponent } from './component/stagiaire/my-reports/my-reports.component';
+import { ProfilComponent } from './component/stagiaire/profil/profil.component';
 
 export const routes: Routes = [
     {path:'', component: Login},
@@ -18,7 +19,8 @@ export const routes: Routes = [
     {
         path: 'stagiaire', component:LayoutStagiaireComponent, children: [
             {path: '', component:MyReportsComponent},
-            {path: 'dashboard', component: DashboardStagiareComponent}
+            {path: 'dashboard', component: DashboardStagiareComponent},
+            {path: 'profil', component: ProfilComponent}
         ]
     }
 ];

@@ -8,7 +8,6 @@ import { MyReportsComponent } from "../../component/stagiaire/my-reports/my-repo
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    MyReportsComponent
 ],
   templateUrl: './layout-stagiaire.component.html',
   styleUrl: './layout-stagiaire.component.scss'
