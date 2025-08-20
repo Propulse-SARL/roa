@@ -1,6 +1,11 @@
 <section>
     <h2>Liste des stagiaires</h2>
-
+    <form action="" [formGroup]="searchForm">
+        <div class="search-wrapper">
+            <span class="material-symbols-outlined">search</span>
+            <input type="text" formControlName="search" placeholder="Rechercher un rapport">
+        </div>
+    </form>
     <table>
         <thead>
             <tr>
@@ -14,22 +19,22 @@
             </tr>
         </thead>
         <tbody>
-            @for (stagiaire of Stagiaires; track stagiaire.id; let i = $index) {
+            @for (stagiaire of filterStagiaires; track stagiaire.id; let i = $index) {
             <tr>
                 <td>{{stagiaire.id}}</td>
                 <td class="nom">{{stagiaire.name}} {{stagiaire.firstName}} </td>
-                <td>{{stagiaire.niveau}}</td>
+                <td>{{stagiaire.nivScolaire}}</td>
                 <td class="departements">
                     <p class="departement" [style.backgroundColor]="color[i]">{{stagiaire.departement}}</p>
                 </td>
-                <td>{{stagiaire.dateDebutStage}} - {{stagiaire.dateFinStage}}</td>
-                <td>{{stagiaire.status}}</td>
+                <td>{{stagiaire.dteDebutStage}} - {{stagiaire.dteFinStage}}</td>
+                <td>{{stagiaire.statut}}</td>
                 <td>
                     <button mat-icon-button [matMenuTriggerFor]="menu">
                         <mat-icon color="primary">more_vert</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="openAddObjectifForm()">
+                        <button mat-menu-item (click)="openAddObjectifForm(stagiaire)">
                             <mat-icon>gps_fixed</mat-icon>
                             <span >Attribuer un objectif</span>
                         </button>
@@ -41,7 +46,7 @@
                             <mat-icon>edit</mat-icon>
                             <span>Modifier les informations</span>
                         </button>
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="deleteStagiaire(stagiaire.id)">
                             <mat-icon>delete</mat-icon>
                             <span>supprimer le stagiaire</span>
                         </button>

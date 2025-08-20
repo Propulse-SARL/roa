@@ -4,9 +4,9 @@
         <p>Remplissez les informations ci-dessous pour ajouter un nouveau stagiaire au système.</p>
     </div>
     @if (error) {
-        <div class="error">
-            Veuillez remplir correctement les champs
-        </div>
+    <div class="error">
+        Veuillez remplir correctement les champs
+    </div>
     }
     <div class="row-container">
         <div class="row">
@@ -16,19 +16,31 @@
             </div>
             <div class="label-input">
                 <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" formControlName="lastName" placeholder="Entrez le prénom du stagiaire">
+                <input type="text" id="prenom" formControlName="firstName" placeholder="Entrez le prénom du stagiaire">
             </div>
         </div>
+        @if (addStagiaireForm.get('name')?.invalid && addStagiaireForm.get('name')?.touched) {
+        <div class="error">Le champ nom est requis (min 3 caractères) .</div>
+        }
+        @if (addStagiaireForm.get('firstName')?.invalid && addStagiaireForm.get('firstName')?.touched) {
+        <div class="error">Le champs Prénom nom est requis (min 3 caractères) .</div>
+        }
         <div class="row">
             <div class="label-input">
-                <label for="age">Age</label>
-                <input type="text" id="age" formControlName="age" placeholder="Entrez l'âge du stagiaire" required>
+                <label for="dteNaiss">Date de naissance</label>
+                <input type="date" id="age" formControlName="dteNaiss" required>
             </div>
             <div class="label-input">
                 <label for="email">Email</label>
                 <input type="email" id="email" formControlName="email" placeholder="Entrez l'email du stagiaire">
             </div>
         </div>
+        @if (addStagiaireForm.get('dteNaiss')?.invalid && addStagiaireForm.get('dteNaiss')?.touched) {
+        <div class="error">Le champ date de naissance est requis</div>
+        }
+        @if (addStagiaireForm.get('email')?.invalid && addStagiaireForm.get('email')?.touched) {
+        <div class="error">Le champ email est requis</div>
+        }
         <br />
         <div class="row">
             <div class="label-input">
@@ -41,6 +53,12 @@
                 <input type="text" id="ecole" formControlName="ecole" placeholder="Entrez l'école du stagiaire">
             </div>
         </div>
+        @if (addStagiaireForm.get('nivScolaire')?.invalid && addStagiaireForm.get('nivScolaire')?.touched) {
+        <div class="error">Le champ niveau scolaire est requis</div>
+        }
+        @if (addStagiaireForm.get('ecole')?.invalid && addStagiaireForm.get('ecole')?.touched) {
+        <div class="error">Le champ École scolaire est requis</div>
+        }
         <br />
         <div class="row">
             <div class="label-input">
@@ -59,8 +77,13 @@
                     <option value="Pro">Professionnel</option>
                 </select>
             </div>
-
         </div>
+        @if (addStagiaireForm.get('statut')?.invalid && addStagiaireForm.get('statut')?.touched) {
+        <div class="error">Le champ Statut est requis</div>
+        }
+        @if (addStagiaireForm.get('departement')?.invalid && addStagiaireForm.get('departement')?.touched) {
+        <div class="error">Le champ Département est requis</div>
+        }
         <div class="row">
             <div class="label-input">
                 <label for="dteDebut">Date de début de stage</label>
@@ -71,7 +94,12 @@
                 <input type="date" id="dteDin" formControlName="dteFinStage">
             </div>
         </div>
-
+        @if (addStagiaireForm.get('dteDebutStage')?.invalid && addStagiaireForm.get('dteDebutStage')?.touched) {
+        <div class="error">Le champ Date de debut de stage est requis</div>
+        }
+        @if (addStagiaireForm.get('ecole')?.invalid && addStagiaireForm.get('ecole')?.touched) {
+        <div class="error">Le champ École est requis</div>
+        }
     </div>
     <div class="btn-container">
         <button type="submit">Enregistrer le stagiaire</button>

@@ -18,7 +18,6 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nom de l'auteur</th>
                 <th>Titre du rapport</th>
                 <th>Date de soumission</th>
                 <th>Département</th>
@@ -26,10 +25,9 @@
             </tr>
         </thead>
         <tbody>
-            @for (report of reports; track report.no) {
+            @for (report of filterReports; track report.no) {
             <tr>
                 <td>{{report.no}}</td>
-                <td>{{report.author}}</td>
                 <td class="title">{{report.title}}</td>
                 <td>{{report.submissionDate}}</td>
                 <td>{{report.department}}</td>

@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ɵInternalFormsSharedModule, ReactiveFormsModule } from '@angular/forms';
 
 interface Report {
   no: number;
-  author: string;
   title: string;
   submissionDate: string; // ou Date si tu préfères
   department: string;
@@ -15,7 +14,7 @@ interface Report {
   templateUrl: './my-reports.component.html',
   styleUrl: './my-reports.component.scss'
 })
-export class MyReportsComponent {
+export class MyReportsComponent implements OnInit {
 
   searchForm = new FormGroup({
     search: new FormControl(''),
@@ -23,10 +22,24 @@ export class MyReportsComponent {
   });
 
   reports: Report[] = [
-    { no: 1, author: 'Alice Dupont', title: 'Rapport annuel 2025', submissionDate: '2025-08-01', department: 'Informatique' },
-    { no: 2, author: 'Bob Martin', title: 'Analyse des ventes', submissionDate: '2025-08-03', department: 'Marketing' },
-    { no: 3, author: 'Clara Smith', title: 'Rapport technique projet X', submissionDate: '2025-08-05', department: 'Développement' },
-    { no: 4, author: 'David Lee', title: 'Étude de marché', submissionDate: '2025-08-07', department: 'Marketing' },
-    { no: 5, author: 'Emma Johnson', title: 'Bilan financier Q2', submissionDate: '2025-08-09', department: 'Finance' },
+    { no: 1, title: 'Rapport annuel 2025', submissionDate: '2025-08-01', department: 'Informatique' },
+    { no: 2, title: 'Analyse des ventes', submissionDate: '2025-08-03', department: 'Marketing' },
+    { no: 3, title: 'Rapport technique projet X', submissionDate: '2025-08-05', department: 'Développement' },
+    { no: 4, title: 'Étude de marché', submissionDate: '2025-08-07', department: 'Marketing' },
+    { no: 5, title: 'Bilan financier Q2', submissionDate: '2025-08-09', department: 'Finance' },
   ];
+
+  ngOnInit(): void {
+    this.searchForm.get('search')?.valueChanges.subscribe(value=>
+      this.applyFilter(value || '')
+    )
+  }
+  filterReports: Report[] = this.reports
+
+  applyFilter(searchTerm: string) {
+    this.filterReports = this.reports.filter(report =>
+      report.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      report.submissionDate.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
 }

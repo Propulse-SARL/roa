@@ -1,7 +1,7 @@
 <form [formGroup]="addObjectifForm" (ngSubmit)="onSubmit()">
     <div>
         <h2>Enregistrer un objectif</h2>
-        <p>Attribuer à: </p>
+        <p>Attribuer à: {{stagiaireData.name}} </p>
     </div>
     @if (error) {
     <div class="error">

@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Stagiaire } from './../add-stagiaire/add-stagiaire.component';
+import { Component, Inject, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { ManagementTableComponent } from '../management-table/management-table.component';
 @Component({
   selector: 'app-add-objectif',
   imports: [
@@ -13,6 +14,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AddObjectifComponent {
 
   private dialogRef = inject(MatDialogRef<AddObjectifComponent>)
+  private data = inject(MAT_DIALOG_DATA) as { StagiaireData: Stagiaire};
+  
+  stagiaireData = this.data.StagiaireData;
 
   addObjectifForm = new FormGroup({
     title : new FormControl('',[Validators.required, Validators.minLength(3)]),
@@ -36,4 +40,7 @@ export class AddObjectifComponent {
       this.error = true;
     }
   }
+  
+
+
 }

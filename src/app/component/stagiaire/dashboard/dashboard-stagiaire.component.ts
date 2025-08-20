@@ -4,11 +4,11 @@ import { ListOfObjectivesComponent } from "../list-of-objectives/list-of-objecti
 import { PerformanceComponent } from "../performance/performance.component";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dashboard-stagiaire',
   imports: [StatistiquesComponent, ListOfObjectivesComponent, PerformanceComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  templateUrl: './dashboard-stagiaire.component.html',
+  styleUrl: './dashboard-stagiaire.component.scss'
 })
-export class DashboardComponent {
+export class DashboardStagiaireComponent {
 
 }

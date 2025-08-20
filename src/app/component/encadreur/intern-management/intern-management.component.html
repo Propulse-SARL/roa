@@ -1,8 +1,8 @@
 <section>
-    <app-management-statistique></app-management-statistique>
+    <app-management-statistique (stagiaireEvent)="receiveStagiaire($event)"></app-management-statistique>
 
     <hr/>
 
-    <app-management-table></app-management-table>
+    <app-management-table [newStagiaire]="newStagiaire"> ></app-management-table>
 
 </section>
