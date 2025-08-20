@@ -2,7 +2,7 @@
     <h2>Profil utilisateur</h2>
 
     <div class="form-container">
-        <form action="" class="principal-form">
+        <form class="principal-form" [formGroup]="profilForm">
             <div class="text-brut">
                 <h2>Informations du profil</h2>
                 <p>Mettez à jour vos informations personnelles</p>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="label-input">
                     <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" formControlName="lastName">
+                    <input type="text" id="prenom" formControlName="firstName">
                 </div>
             </div>
             <div class="row">
@@ -28,32 +28,44 @@
                     <label for="departement">Département </label>
                     <input type="text" id="departement" formControlName="departement">
                 </div>
+                <div class="label-input">
+                    <label for="email">Email </label>
+                    <input type="email" id="email" formControlName="email">
+                </div>
             </div>
 
             <hr />
 
-            <form action="">
+            <form formGroupName="changePasswordForm" (ngSubmit)="changePasswordSubmit()" [formGroup]="profilForm">
                 <h3>Changer le mot de passe</h3>
+                @if (changePasswordError != '') {
+                    <div class="error">
+                        {{changePasswordError}}
+                    </div>
+                }
                 <div class="row">
                     <div class="label-input">
-                        <label for="ancienMdp">Ancien mot de passe</label>
-                        <input type="password" id="ancienMdp" formControlName="ancienMdp">
+                        <label for="lastPassword">Ancien mot de passe</label>
+                        <input type="password" id="lastPassword" formControlName="lastPassword">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="label-input">
-                        <label for="newMdp">Nouveau Mot de passe </label>
-                        <input type="password" id="newMdp" formControlName="newMdp">
+                        <label for="newPassword">Nouveau Mot de passe </label>
+                        <input type="password" id="newPassword" formControlName="newPassword">
                     </div>
                     <div class="label-input">
-                        <label for="confirmNewMdp">Confirmer </label>
-                        <input type="password" id="confirmNewMdp" formControlName="confirmNewMdp">
+                        <label for="confirmPassword">Confirmer </label>
+                        <input type="password" id="confirmPassword" formControlName="confirmPassword">
                     </div>
                 </div>
-                <button>Changer le mot de passe</button>
+                @if (profilForm.get('changePassword.confirmPassword')?.invalid && profilForm.get('changePassword.confirmPassword')?.touched) {
+                <div class="error">Ce champ est requis (min 3 caractères) .</div>
+                }
+                <button type="submit">Changer le mot de passe</button>
             </form>
-            <button>Enregistrer les modifications</button>
+            <button type="submit">Enregistrer les modifications</button>
         </form>
     </div>
 </section>

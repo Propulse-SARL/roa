@@ -1,14 +1,16 @@
 section {
     padding: 25px;
 
-    h2, h3 {
+    h2,
+    h3 {
         font-family: 'Outfit';
         font-size: clamp(25px, 2vw, 35px);
         line-height: 32px;
         color: #171A1FFF;
         font-weight: bold;
     }
-    h3{
+
+    h3 {
         font-size: clamp(20px, 1.5vw, 30px);
     }
 
@@ -25,7 +27,11 @@ section {
             padding: 20px;
             border-radius: 15px;
             width: clamp(420px, 40vw, 700px);
-            
+            box-shadow: 0px 0px 5px #171a1f62;
+            .error{
+                color: red;
+            }
+
             .image-container {
                 display: flex;
                 align-items: center;
@@ -111,21 +117,23 @@ section {
             margin: 20px 0;
             color: #DEE1E6FF;
         }
+
         button {
-        color: white;
-        border: none;
-        border-radius: 6px;
-        background: #008B1DFF;
-        height: 35px;
-        cursor: pointer;
-        padding: 8px 18px;
-        font-size: 16px;
-        transition: 0.3s;
-        margin-top: 20px;
-        align-self: flex-start;
-        &:hover{
-            background: rgb(2, 104, 24) ;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            background: #008B1DFF;
+            height: 35px;
+            cursor: pointer;
+            padding: 8px 18px;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 20px;
+            align-self: flex-start;
+
+            &:hover {
+                background: rgb(2, 104, 24);
+            }
         }
-    }
     }
 }

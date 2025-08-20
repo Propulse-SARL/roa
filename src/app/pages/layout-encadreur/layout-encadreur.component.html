@@ -1,6 +1,6 @@
 <header>
     <button class="logout"><span class="material-symbols-outlined">logout</span>Déconnexion</button>
-    <img src="images/avatar.png" alt="Profil">
+    <img src="images/avatar.png" [routerLink]="['/encadreur/profil']" alt="Profil">
 </header>
 <nav class="side-bar">
     <img src="images/logoPropulse.png" alt="">
@@ -14,9 +14,9 @@
             <span class="material-symbols-outlined">speed</span>
             <a class="text">Tableau de bord</a>
         </span>
-        <span class="option">
+        <span class="option" [routerLink]="['/encadreur/profil']" routerLinkActive="active">
             <span class="material-symbols-outlined"><span class="material-symbols-outlined">person_edit</span></span>
-            <a [routerLink]="['/encadreur/profil']" routerLinkActive="active"  class="text">Profil</a>
+            <a class="text">Profil</a>
         </span>
     </div>
 

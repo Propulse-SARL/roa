@@ -7,6 +7,7 @@ import { AddObjectifComponent } from '../add-objectif/add-objectif.component';
 import { ManagementStatistiqueComponent } from '../management-statistique/management-statistique.component';
 import { Stagiaire } from '../add-stagiaire/add-stagiaire.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-management-table',
@@ -28,8 +29,8 @@ export class ManagementTableComponent implements OnInit, OnChanges {
     week: new FormControl<number | null>(null),
   });
 
-  applyFilter(searchTerm: string){
-    this.filterStagiaires = this.Stagiaires.filter( s=> 
+  applyFilter(searchTerm: string) {
+    this.filterStagiaires = this.Stagiaires.filter(s =>
       s.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
       s.firstName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
     )
@@ -50,13 +51,17 @@ export class ManagementTableComponent implements OnInit, OnChanges {
 
   //Gestion de l'ajout d'un nouveau stagiare
   @Input() newStagiaire!: Stagiaire;
+  private _snackBar = inject(MatSnackBar);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['newStagiaire'] && this.newStagiaire) {
       if (!(this.Stagiaires.some(s => s.id === this.newStagiaire.id))) {
         this.Stagiaires.push(this.newStagiaire);
-        console.log("Nouveau Stagiaire ajouté", this.newStagiaire);
-
+        this._snackBar.open("Stagiaire supprimé", "OK", {
+          duration: 5000,
+          horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
+          verticalPosition: 'top' as MatSnackBarVerticalPosition,
+        })
       }
     }
   }
@@ -65,9 +70,12 @@ export class ManagementTableComponent implements OnInit, OnChanges {
   deleteStagiaire(id: number) {
     this.filterStagiaires = this.filterStagiaires.filter(s => s.id != id)
     console.log(this.filterStagiaires);
-    
+    this._snackBar.open("Stagiaire supprimé", "OK", {
+      duration: 5000,
+      horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
+      verticalPosition: 'top' as MatSnackBarVerticalPosition,
+    })
   }
-
 
   //Gestion de la couleur pour la colonne département
   color: string[] = [];
@@ -80,12 +88,12 @@ export class ManagementTableComponent implements OnInit, OnChanges {
     })
 
     //Exécution de la recherche
-    this.searchForm.get('search')?.valueChanges.subscribe(val=>{
+    this.searchForm.get('search')?.valueChanges.subscribe(val => {
       this.applyFilter(val || '')
-      if (val == ''){
+      if (val == '') {
         this.filterStagiaires = this.Stagiaires
       }
-    } )
+    })
   }
 
   getRandomColor(): string {
