@@ -8,6 +8,7 @@ import { LayoutStagiaireComponent } from './pages/layout-stagiaire/layout-stagia
 import { MyReportsComponent } from './component/stagiaire/my-reports/my-reports.component';
 import { ProfilComponent as StagiaireProfilComponent } from './component/stagiaire/profil/profil.component';
 import { ProfilComponent } from './component/encadreur/profil/profil.component';
+import { ViewReportComponent } from './component/stagiaire/view-report/view-report.component';
 
 export const routes: Routes = [
     {path:'', component: Login},
@@ -24,5 +25,8 @@ export const routes: Routes = [
             {path: 'dashboard', component: DashboardStagiaireComponent},
             {path: 'profil', component: StagiaireProfilComponent}
         ]
+    },
+    {
+        path: 'view-report/:id', component: ViewReportComponent
     }
 ];

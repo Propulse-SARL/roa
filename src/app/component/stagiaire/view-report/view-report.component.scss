@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f4f4;
+}
+
+.report-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  padding: 2rem;
+  position: relative;
+
+  .filagramme{
+    position: absolute;
+    top: 45%;
+    left: 30%;
+    transform: rotate(45deg);
+    opacity: 0.3;
+  }
+}
+
+.report-header {
+  border-bottom: 2px solid #058A3FFF;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.report-title {
+  font-size: 2rem;
+  color: #058A3FFF;
+}
+
+.report-meta p {
+  margin: 0.2rem 0;
+  color: #555;
+}
+
+.objectifs h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.objectif {
+  border-left: 4px solid #058A3FFF;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.status.true {
+  background: #c8e6c9;
+  color: #256029;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.status.false {
+  background: #ffcdd2;
+  color: #b71c1c;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.report-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.report-footer button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background: #058A3FFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.report-footer button:hover {
+  background: rgb(5, 95, 31);
+}

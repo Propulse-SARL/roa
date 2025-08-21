@@ -25,20 +25,21 @@
             </tr>
         </thead>
         <tbody>
-            @for (report of filterReports; track report.no) {
+            @for (report of filterReports; track report.id) {
             <tr>
-                <td>{{report.no}}</td>
-                <td class="title">{{report.title}}</td>
-                <td>{{report.submissionDate}}</td>
+                <td>{{report.id}}</td>
+                <td class="title    ">{{report.title}}</td>
+                <td>{{report.submissionDate.toLocaleDateString('fr-FR')}}</td>
                 <td>{{report.department}}</td>
                 <td class="actions">
-                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">visibility</span>
-                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">download</span>
-                    <span class="material-symbols-outlined cursor-pointer text-blue-500" title="Voir">print</span>
+                    <a class="material-symbols-outlined cursor-pointer text-blue-500" title="Regarder le rapport"
+                        [href]="'/view-report/' + report.id" target="_blank">visibility</a>
+                    <a class="material-symbols-outlined cursor-pointer text-blue-500" [href]="'/view-report/' + report.id + '?print=true'"  title="Télecharger le rapport">download</a>
+                    <a class="material-symbols-outlined cursor-pointer text-blue-500" [href]="'/view-report/' + report.id + '?print=true'" title="Imprimer le rapport">print</a>
                 </td>
             </tr>
             }
         </tbody>
     </table>
-    
+    <router-outlet></router-outlet>
 </section>

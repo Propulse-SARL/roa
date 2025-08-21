@@ -1,0 +1,35 @@
+@if (report){
+<div class="report-page">
+  <img src="images/logoPropulse.png" alt="" class="filagramme">
+  <header class="report-header">
+    <h1 class="report-title">Titre: {{report[0].title}}</h1>
+    <div class="report-meta">
+      <p><strong>Auteur :</strong> {{report[0].authorName}}</p>
+      <p><strong>Date de soumission :</strong> {{report[0].submissionDate.toLocaleDateString('Fr')}}</p>
+      <p><strong>Département :</strong> {{report[0].department}}</p>
+    </div>
+  </header>
+
+  <main class="report-content">
+    <section class="objectifs">
+      <h2>Objectifs</h2>
+      @for (objectif of report[0].objectifsList; track objectif.id) {
+      <div class="objectif">
+        <h3>{{objectif.title}}</h3>
+        <p>{{objectif.description}}</p>
+        <p><strong>Type :</strong> {{objectif.Type}}</p>
+        <p><strong>Commentaire :</strong> {{objectif.Commentaire}}</p>
+        <span class="status Statut">{{objectif.statut}}</span>
+      </div>
+      }
+
+    </section>
+  </main>
+  @if (!printMode) {
+  <footer class="report-footer">
+    <button (click)="printReport()">Imprimer le rapport</button>
+  </footer>
+  }
+
+</div>
+}

@@ -96,11 +96,12 @@ section {
             color: rgb(242, 170, 3);
         }
 
-        .actions {
+        .actions,a {
             display: flex;
             justify-content: center;
             gap: 10px;
             color: rgb(156, 153, 153);
+            text-decoration: none;
 
             .material-symbols-outlined {
                 font-size: 18px;
