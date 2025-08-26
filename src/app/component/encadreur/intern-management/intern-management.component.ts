@@ -12,8 +12,4 @@ import { Stagiaire } from '../add-stagiaire/add-stagiaire.component';
 export class InternManagementComponent {
   newStagiaire!: Stagiaire;
   
-  receiveStagiaire(stagiaire: Stagiaire){
-    this.newStagiaire = stagiaire
-    console.log('Stagiaire reçu dans InternManagement', this.newStagiaire);
-  }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import { MyReportsComponent } from "../../component/stagiaire/my-reports/my-reports.component";
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-layout-stagiaire',
@@ -13,5 +14,5 @@ import { MyReportsComponent } from "../../component/stagiaire/my-reports/my-repo
   styleUrl: './layout-stagiaire.component.scss'
 })
 export class LayoutStagiaireComponent {
-
+  public userService = inject(UserService)
 }

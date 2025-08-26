@@ -4,10 +4,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddObjectifComponent } from '../add-objectif/add-objectif.component';
-import { ManagementStatistiqueComponent } from '../management-statistique/management-statistique.component';
 import { Stagiaire } from '../add-stagiaire/add-stagiaire.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-management-table',
@@ -21,67 +21,14 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
   templateUrl: './management-table.component.html',
   styleUrl: './management-table.component.scss'
 })
-export class ManagementTableComponent implements OnInit, OnChanges {
-
-  //Gestion de la recherche
-  searchForm = new FormGroup({
-    search: new FormControl(''),
-    week: new FormControl<number | null>(null),
-  });
-
-  applyFilter(searchTerm: string) {
-    this.filterStagiaires = this.Stagiaires.filter(s =>
-      s.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
-      s.firstName.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
-    )
-  }
-
-  //Gestion de la modale Attribuer un objectif
-  private dialog = inject(MatDialog);
-
-  openAddObjectifForm(stagiaire: Stagiaire) {
-    const dialogRef = this.dialog.open(AddObjectifComponent, {
-      data: { StagiaireData: stagiaire }
-    })
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Modal fermée', result);
-      this.newStagiaire = result
-    })
-  }
-
-  //Gestion de l'ajout d'un nouveau stagiare
-  @Input() newStagiaire!: Stagiaire;
+export class ManagementTableComponent implements OnInit {
+  public userService = inject(UserService);
   private _snackBar = inject(MatSnackBar);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['newStagiaire'] && this.newStagiaire) {
-      if (!(this.Stagiaires.some(s => s.id === this.newStagiaire.id))) {
-        this.Stagiaires.push(this.newStagiaire);
-        this._snackBar.open("Stagiaire supprimé", "OK", {
-          duration: 5000,
-          horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
-          verticalPosition: 'top' as MatSnackBarVerticalPosition,
-        })
-      }
-    }
-  }
-
-  //Gestion de la suppression d'un stagi
-  deleteStagiaire(id: number) {
-    this.filterStagiaires = this.filterStagiaires.filter(s => s.id != id)
-    console.log(this.filterStagiaires);
-    this._snackBar.open("Stagiaire supprimé", "OK", {
-      duration: 5000,
-      horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
-      verticalPosition: 'top' as MatSnackBarVerticalPosition,
-    })
-  }
-
-  //Gestion de la couleur pour la colonne département
-  color: string[] = [];
+  Stagiaires: Stagiaire[] = [];
+  filterStagiaires!: Stagiaire[]
 
   ngOnInit(): void {
-
     //Couleurs du stagiaire
     this.Stagiaires.forEach(() => {
       this.color.push(this.getRandomColor());
@@ -94,7 +41,69 @@ export class ManagementTableComponent implements OnInit, OnChanges {
         this.filterStagiaires = this.Stagiaires
       }
     })
+    //Récupération des stagiaires
+    this.ReadStagiaire()
   }
+
+  //Supression du stagiaire
+  DeleteStagiaire(id: any): any {
+    this.userService.deleteStagiaire(id).subscribe({
+      next: (response: any) => {
+        console.log('Response', response);
+      },
+      error: (err) => {
+        console.log('Erreur', err);
+      }
+    })
+
+    //Récupération des stagiaires
+    this.ReadStagiaire()
+    this._snackBar.open("Stagiaire supprimé", "OK", {
+      duration: 5000,
+      horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
+      verticalPosition: 'top' as MatSnackBarVerticalPosition,
+    })
+  }
+
+  //Gestion de la recherche
+  searchForm = new FormGroup({
+    search: new FormControl(''),
+    week: new FormControl<number | null>(null),
+  });
+
+  applyFilter(searchTerm: string) {
+    const term = (searchTerm || '').toLocaleLowerCase();
+
+    this.filterStagiaires = this.Stagiaires.filter(s =>
+      (s.username || '').toLocaleLowerCase().includes(term)
+    );
+  }
+
+  //Gestion de la modale Attribuer un objectif
+  private dialog = inject(MatDialog);
+
+  openAddObjectifForm(stagiaire: Stagiaire) {
+    const dialogRef = this.dialog.open(AddObjectifComponent, {
+      data: { StagiaireData: stagiaire }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Modal fermée', result);
+    })
+  }
+
+  //Gestion de la suppression d'un stagière
+  deleteStagiaire(id: any) {
+    this.filterStagiaires = this.filterStagiaires.filter(s => s.id != id)
+    console.log(this.filterStagiaires);
+    this._snackBar.open("Stagiaire supprimé", "OK", {
+      duration: 5000,
+      horizontalPosition: 'right' as MatSnackBarHorizontalPosition,
+      verticalPosition: 'top' as MatSnackBarVerticalPosition,
+    })
+  }
+
+  //Gestion de la couleur pour la colonne département
+  color: string[] = [];
 
   getRandomColor(): string {
     const r = Math.floor(Math.random() * 256)
@@ -103,75 +112,17 @@ export class ManagementTableComponent implements OnInit, OnChanges {
     return `rgba(${r}, ${g}, ${b}, 0.5)`;
   }
 
-  //Tableau fictif de stagiaires
-  Stagiaires: Stagiaire[] = [
-    {
-      id: 1,
-      name: "Keuni",
-      firstName: "Michel",
-      dteNaiss: "2000-05-15",
-      email: "michel.keuni@example.com",
-      nivScolaire: "Licence 3",
-      ecole: "Université de Douala",
-      departement: "Informatique",
-      dteDebutStage: "2025-07-01",
-      dteFinStage: "2025-09-30",
-      statut: "En cours",
-    },
-    {
-      id: 2,
-      name: "Ngono",
-      firstName: "Sarah",
-      dteNaiss: "1999-11-22",
-      email: "sarah.ngono@example.com",
-      nivScolaire: "Master 1",
-      ecole: "Université de Yaoundé I",
-      departement: "Ressources Humaines",
-      dteDebutStage: "2025-06-10",
-      dteFinStage: "2025-08-20",
-      statut: "Terminé",
-    },
-    {
-      id: 3,
-      name: "Mbarga",
-      firstName: "Jean",
-      dteNaiss: "2001-02-08",
-      email: "jean.mbarga@example.com",
-      nivScolaire: "Licence 2",
-      ecole: "Institut Supérieur de Technologie",
-      departement: "Marketing",
-      dteDebutStage: "2025-08-01",
-      dteFinStage: "2025-10-15",
-      statut: "En cours",
-    },
-    {
-      id: 4,
-      name: "Tchoua",
-      firstName: "Brice",
-      dteNaiss: "1998-09-12",
-      email: "brice.tchoua@example.com",
-      nivScolaire: "Master 2",
-      ecole: "Université Catholique d’Afrique Centrale",
-      departement: "Finance",
-      dteDebutStage: "2025-05-20",
-      dteFinStage: "2025-08-20",
-      statut: "Terminé",
-    },
-    {
-      id: 5,
-      name: "Nana",
-      firstName: "Cynthia",
-      dteNaiss: "2002-04-25",
-      email: "cynthia.nana@example.com",
-      nivScolaire: "Licence 1",
-      ecole: "Université de Buea",
-      departement: "Communication",
-      dteDebutStage: "2025-07-15",
-      dteFinStage: "2025-09-15",
-      statut: "En cours",
-    }
-  ];
+  ReadStagiaire(): any {
+    this.userService.readStagiaire().subscribe({
+      next: (response: any) => {
+        this.Stagiaires = response.data
+        this.filterStagiaires = this.Stagiaires
+        console.log('Response', response);
 
-  filterStagiaires: Stagiaire[] = this.Stagiaires
-
+      },
+      error: (err) => {
+        alert("Impossible de lister les stagiaires");
+      }
+    })
+  }
 }

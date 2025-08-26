@@ -3,9 +3,9 @@
         <h2>Enregistrer un nouveau stagiaire</h2>
         <p>Remplissez les informations ci-dessous pour ajouter un nouveau stagiaire au système.</p>
     </div>
-    @if (error) {
+    @if (error != '') {
     <div class="error">
-        Veuillez remplir correctement les champs
+        {{error}}
     </div>
     }
     <div class="row-container">
@@ -27,25 +27,18 @@
         }
         <div class="row">
             <div class="label-input">
-                <label for="dteNaiss">Date de naissance</label>
-                <input type="date" id="age" formControlName="dteNaiss" required>
-            </div>
-            <div class="label-input">
                 <label for="email">Email</label>
                 <input type="email" id="email" formControlName="email" placeholder="Entrez l'email du stagiaire">
             </div>
         </div>
-        @if (addStagiaireForm.get('dteNaiss')?.invalid && addStagiaireForm.get('dteNaiss')?.touched) {
-        <div class="error">Le champ date de naissance est requis</div>
-        }
         @if (addStagiaireForm.get('email')?.invalid && addStagiaireForm.get('email')?.touched) {
         <div class="error">Le champ email est requis</div>
         }
         <br />
         <div class="row">
             <div class="label-input">
-                <label for="nivScolaire">Niveau scolaire</label>
-                <input type="text" id="nivScolaire" formControlName="nivScolaire"
+                <label for="niv_scolaire">Niveau scolaire</label>
+                <input type="text" id="niv_scolaire" formControlName="niv_scolaire"
                     placeholder="Entrez le niveau scolaire du stagiaire" required>
             </div>
             <div class="label-input">
@@ -53,7 +46,7 @@
                 <input type="text" id="ecole" formControlName="ecole" placeholder="Entrez l'école du stagiaire">
             </div>
         </div>
-        @if (addStagiaireForm.get('nivScolaire')?.invalid && addStagiaireForm.get('nivScolaire')?.touched) {
+        @if (addStagiaireForm.get('niv_scolaire')?.invalid && addStagiaireForm.get('niv_scolaire')?.touched) {
         <div class="error">Le champ niveau scolaire est requis</div>
         }
         @if (addStagiaireForm.get('ecole')?.invalid && addStagiaireForm.get('ecole')?.touched) {
@@ -87,18 +80,34 @@
         <div class="row">
             <div class="label-input">
                 <label for="dteDebut">Date de début de stage</label>
-                <input type="date" id="dteDebut" formControlName="dteDebutStage">
+                <input type="date" id="dteDebut" formControlName="dte_debut_stage">
             </div>
             <div class="label-input">
-                <label for="ecole">Date de fin de stage</label>
-                <input type="date" id="dteDin" formControlName="dteFinStage">
+                <label for="dteFin">Date de fin de stage</label>
+                <input type="date" id="dteFin" formControlName="dte_fin_stage">
             </div>
         </div>
-        @if (addStagiaireForm.get('dteDebutStage')?.invalid && addStagiaireForm.get('dteDebutStage')?.touched) {
+        @if (addStagiaireForm.get('dte_debut_stage')?.invalid && addStagiaireForm.get('dte_debut_stage')?.touched) {
         <div class="error">Le champ Date de debut de stage est requis</div>
         }
         @if (addStagiaireForm.get('ecole')?.invalid && addStagiaireForm.get('ecole')?.touched) {
         <div class="error">Le champ École est requis</div>
+        }
+        <div class="row">
+            <div class="label-input">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" formControlName="password">
+            </div>
+            <div class="label-input">
+                <label for="confirmPassword">Confirmer le mot de passe</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword">
+            </div>
+        </div>
+        @if (addStagiaireForm.get('password')?.invalid && addStagiaireForm.get('password')?.touched) {
+        <div class="error">Le champ Mot de passe est requis (min. 6)</div>
+        }
+        @if (addStagiaireForm.get('confirmPassword')?.invalid && addStagiaireForm.get('confirmPassword')?.touched) {
+        <div class="error">Le champ confirmer le mot de passe est requis</div>
         }
     </div>
     <div class="btn-container">
