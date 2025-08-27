@@ -1,7 +1,7 @@
 <form [formGroup]="addObjectifForm" (ngSubmit)="onSubmit()">
     <div>
         <h2>Enregistrer un objectif</h2>
-        <!-- <p>Attribuer à: {{stagiaireData.name}} </p> -->
+        <p>Attribuer à: <span class="username"> {{stagiaireData.username}}</span></p>
     </div>
     @if (error) {
     <div class="error">
@@ -12,8 +12,7 @@
         <div class="row">
             <div class="label-input">
                 <label for="titre">Titre </label>
-                <input type="text" id="titre" formControlName="title" placeholder="Entrez le nom de l'objectif"
-                    required>
+                <input type="text" id="titre" formControlName="titre" placeholder="Entrez le nom de l'objectif" required>
             </div>
         </div>
         @if (addObjectifForm.get('title')?.invalid && addObjectifForm.get('title')?.touched) {
@@ -33,44 +32,31 @@
             <div class="label-input">
                 <label for="type">Type</label>
                 <select name="" id="type" formControlName="type">
-                    <option value="" disabled selected class="placeholder-option">-- Attribuer un type --
-                    </option>
-                    <option value="developpement">Informatique</option>
+                    <option value="" disabled selected class="placeholder-option"> Attribuer un type</option>
+                    <option value="journalier">Journalier</option>
+                    <option value="hebdomadaire">Hebdomadaire</option>
                 </select>
             </div>
             <div class="label-input">
                 <label for="nature">Nature</label>
                 <select name="" id="nature" formControlName="nature">
                     <option value="" disabled selected class="placeholder-option">Attribuer une Nature</option>
-                    <option value="academique">Académique</option>
-                    <option value="Pro">Professionnel</option>
+                    <option value="qualitatif">Qualitatif</option>
+                    <option value="quantitatif">Quantitatif</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="label-input">
-                <label for="priorite">Priorité</label>
-                <select name="" id="priorite" formControlName="priorite">
-                    <option value="" disabled selected class="placeholder-option">-- Attribuer une priorité --
-                    </option>
-                    <option value="developpement">Informatique</option>
-                </select>
-            </div>
-            <div class="label-input">
-                <label for="statut">Statut</label>
-                <select name="" id="statut" formControlName="statut">
-                    <option value="" disabled selected class="placeholder-option">Attribuer un statut</option>
-                    <option value="academique">Académique</option>
-                    <option value="Pro">Professionnel</option>
-                </select>
+                <label for="fin">Date limite</label>
+                <input type="date" name="" id="fin" formControlName="fin">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="label-input">
                 <label for="commentaire">Commentaire (facultatif) </label>
-                <textarea id="commentaire" formControlName="commentaire" placeholder="Entrez un commentaire"
-                    required></textarea>
+                <textarea id="commentaire" formControlName="commentaire" placeholder="Entrez un commentaire"></textarea>
             </div>
         </div>
 

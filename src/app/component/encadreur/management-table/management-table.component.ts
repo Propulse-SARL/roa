@@ -8,6 +8,7 @@ import { Stagiaire } from '../add-stagiaire/add-stagiaire.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { UserService } from '../../../services/user.service';
+import { ObjectifsService } from '../../../services/objectifs.service';
 
 @Component({
   selector: 'app-management-table',
@@ -24,6 +25,7 @@ import { UserService } from '../../../services/user.service';
 export class ManagementTableComponent implements OnInit {
   public userService = inject(UserService);
   private _snackBar = inject(MatSnackBar);
+  private objectifService = inject(ObjectifsService);
 
   Stagiaires: Stagiaire[] = [];
   filterStagiaires!: Stagiaire[]
@@ -87,7 +89,18 @@ export class ManagementTableComponent implements OnInit {
       data: { StagiaireData: stagiaire }
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Modal fermée', result);
+      if (result){
+        console.log('donnée du formulaire', result.formData);
+        console.log('donnees du stagiaire', result.stagiaireData);
+        this.objectifService.addObjectif(result.formData, result.stagiaireData).subscribe({
+          next: (response: any) =>{
+            console.log('Ajout dustagiaire response: ',response);            
+          },
+          error: (err)=>{
+            console.log("Erreur d'ajout du stagiaire", err);
+          }
+        })
+      }
     })
   }
 
@@ -118,7 +131,6 @@ export class ManagementTableComponent implements OnInit {
         this.Stagiaires = response.data
         this.filterStagiaires = this.Stagiaires
         console.log('Response', response);
-
       },
       error: (err) => {
         alert("Impossible de lister les stagiaires");

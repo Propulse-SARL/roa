@@ -14,33 +14,33 @@ import { ManagementTableComponent } from '../management-table/management-table.c
 export class AddObjectifComponent {
 
   private dialogRef = inject(MatDialogRef<AddObjectifComponent>)
-  private data = inject(MAT_DIALOG_DATA) as { StagiaireData: Stagiaire};
-  
+  private data = inject(MAT_DIALOG_DATA) as { StagiaireData: Stagiaire };
+
   stagiaireData = this.data.StagiaireData;
 
   addObjectifForm = new FormGroup({
-    title : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    description : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    type : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    nature : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    debut : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    fin : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    priorite : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    statut : new FormControl('',[Validators.required, Validators.minLength(3)]),
-    commentaire : new FormControl(''),
+    titre: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    description: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    type: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    nature: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    fin: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    commentaire: new FormControl(''),
   })
 
   error = false;
-  onSubmit(){
-    if (this.addObjectifForm.valid){
-      this.dialogRef.close(this.addObjectifForm.value)
+  onSubmit() {
+    if (this.addObjectifForm.valid) {
+      this.dialogRef.close({
+        formData: this.addObjectifForm.value,
+        stagiaireData: this.stagiaireData
+      })
       console.log('Formulaire valide');
-    }else{
+    } else {
       console.log('Formulaire invalide');
       this.error = true;
     }
   }
-  
+
 
 
 }

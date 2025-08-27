@@ -28,19 +28,30 @@ export interface Objectif {
   styleUrl: './my-reports.component.scss'
 })
 export class MyReportsComponent implements OnInit {
-  private reportService = inject(RapportsService)
-  reports!: Report[]
+  private rapportService = inject(RapportsService)
+  // private reportService = inject(RapportsService)
+  rapports!: any
 
   //Gestion de la recherche
   searchForm = new FormGroup({
     search: new FormControl(''),
     week: new FormControl<number | null>(null),
   });
-  filterReports: Report[] = this.reports;
+  filterReports: any = this.rapports;
 
   ngOnInit(): void {
-    this.reports = this.reportService.getReports()
-    this.filterReports = this.reports
+    this.rapportService.readRapport().subscribe({
+      next: (response) => {
+        this.rapports = response
+        console.log("Réponse");
+        
+      },
+      error: (err)=>{
+        console.log("Erreur", err);
+        
+      }
+    })
+    this.filterReports = this.rapports
 
     this.searchForm.get('search')?.valueChanges.subscribe(value =>
       this.applyFilter(value || '')
@@ -48,11 +59,11 @@ export class MyReportsComponent implements OnInit {
   }
 
   applyFilter(searchTerm: string) {
-    console.log(this.reports); 
-    this.filterReports = this.reports.filter(report =>
-      report.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      report.submissionDate.toDateString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    console.log(this.rapports); 
+    // this.filterReports = this.rapports.filter(report =>
+    //   report.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    //   report.submissionDate.toDateString().toLowerCase().includes(searchTerm.toLowerCase())
+    // )
   }
 
 }

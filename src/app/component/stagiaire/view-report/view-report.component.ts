@@ -18,7 +18,7 @@ export class ViewReportComponent implements OnInit {
     //Affichage du rapport
     const idParam = this.route.snapshot.paramMap.get('id');
     this.reportId = idParam ? Number(idParam) : 0;
-    this.report = this.reportService.getReports(this.reportId);
+    // this.report = this.reportService.getReports(this.reportId);
     console.log(this.report);
 
     //Impréssion du rapport
